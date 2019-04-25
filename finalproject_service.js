@@ -18,6 +18,7 @@ app.use(express.static('public'));
  * This adds a new user to the file of users and their highscore
  */
 app.post('/', jsonParser, function(req, res) {
+	console.log(req.query.mode);
 	if (req.query.mode == "adduser") {
 		let name = req.body.username;
 		let score = req.body.score;
@@ -147,6 +148,7 @@ function getJsonListQuestions(lines) {
  */
 app.get('/', function (req, res) {
 	res.header("Access-Control-Allow-Origin", "*");
+	console.log(req.query.mode);
 	if (req.query.mode == "getuser") {
 		let file = fs.readFileSync("usernames.txt", 'utf8');
 		let lines = file.split("\n");
