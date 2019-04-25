@@ -106,9 +106,7 @@
 		fetch(url)
 		.then(checkStatus)
 		.then(function(responseText) {
-			console.log(responseText);
 			let json = JSON.parse(responseText);
-			console.log(json);
 			questionsJSONObj = json;
 		})
 		.catch(function(error) {
