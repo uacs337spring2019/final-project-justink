@@ -142,4 +142,4 @@ app.get('/getquestion', function (req, res) {
 	let json = {"questions" : jsonList};
 	res.send(JSON.stringify(json));
 })
-app.listen(3000);
+app.listen(process.env.PORT);
