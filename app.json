@@ -1,0 +1,7 @@
+{
+  "name": "finalproject_service.js",
+  "description": "Node.js app for finalproject.js",
+  "repository": "https://github.com/uacs337spring2019/final-project-justink",
+  "logo": "",
+   "keywords": ["node", "express", "static"]
+ }
