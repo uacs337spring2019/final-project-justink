@@ -18,7 +18,7 @@ app.use(express.static('public'));
  * This adds a new user to the file of users and their highscore
  */
 app.post('/', jsonParser, function(req, res) {
-	if (req.query.mode == "getuser") {
+	if (req.query.mode == "adduser") {
 		let name = req.body.username;
 		let score = req.body.score;
 		let output = name + ":::" + score + "\n";
