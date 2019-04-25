@@ -156,6 +156,7 @@ app.get('/', function (req, res) {
 		let json = {"users" : jsonList};
 		res.send(JSON.stringify(json));
 	} else if(req.query.mode == "getquestion") {
+		console.log("in getquestion get");
 		let file = fs.readFileSync("questions.txt", 'utf8');
 		let lines = file.split("\n");
 		let jsonList = getJsonListQuestions(lines);
