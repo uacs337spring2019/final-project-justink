@@ -51,7 +51,7 @@
 	 */
 	function checkUsername(name) {
 		let foundUser = false;
-		let url = "https://fp460663.herokuapp.com/?mode=getuser";
+		let url = "https://fp460663.herokuapp.com?mode=getuser";
 		fetch(url)
 		.then(checkStatus)
 		.then(function(responseText) {
@@ -85,7 +85,7 @@
 		};
 		console.log(output);
 		
-		let url = "https://fp460663.herokuapp.com/?mode=adduser";
+		let url = "https://fp460663.herokuapp.com?mode=adduser";
 		fetch(url, fetchOptions)
 			.then(checkStatus)
 			.then(function(responseText) {
@@ -101,7 +101,7 @@
 	 * creates a JSON object that contains all the questions
 	 */
 	function getQuestions() {
-		let url = "https://fp460663.herokuapp.com/?mode=getquestion";
+		let url = "https://fp460663.herokuapp.com?mode=getquestion";
 		console.log("in getQuestion in finalproject.js");
 		fetch(url)
 		.then(checkStatus)
@@ -164,7 +164,7 @@
 			};
 			console.log(output);
 			
-			let url = "https://fp460663.herokuapp.com/?mode=endquiz";
+			let url = "https://fp460663.herokuapp.com?mode=endquiz";
 			fetch(url, fetchOptions)
 				.then(checkStatus)
 				.then(function(responseText) {
