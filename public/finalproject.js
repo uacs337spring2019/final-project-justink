@@ -2,9 +2,9 @@
  * Justin Kim
  * CSC 337
  * Final Project
- * This is the .js file for fifteen.html
- * It creates a 15 puzzle and its functionalities such as
- * shuffle, tile highlighting and pointer changing
+ * This is the .js file for index.html
+ * It creates a quiz game and keeps track of the player's username
+ * and their highscores
  */
 (function() {
 	"use strict";
@@ -51,7 +51,7 @@
 	 */
 	function checkUsername(name) {
 		let foundUser = false;
-		let url = "https://fp460663.herokuapp.com/?mode=getuser";
+		let url = "https://fp460663.herokuapp.com?mode=getuser";
 		fetch(url)
 		.then(checkStatus)
 		.then(function(responseText) {
@@ -85,7 +85,7 @@
 		};
 		console.log(output);
 		
-		let url = "https://fp460663.herokuapp.com/mode?=getuser";
+		let url = "https://fp460663.herokuapp.com?mode=getuser";
 		fetch(url, fetchOptions)
 			.then(checkStatus)
 			.then(function(responseText) {
@@ -101,7 +101,7 @@
 	 * creates a JSON object that contains all the questions
 	 */
 	function getQuestions() {
-		let url = "https://fp460663.herokuapp.com/mode?=getquestion";
+		let url = "https://fp460663.herokuapp.com?mode=getquestion";
 		fetch(url)
 		.then(checkStatus)
 		.then(function(responseText) {
@@ -161,7 +161,7 @@
 			};
 			console.log(output);
 			
-			let url = "fp460663.herokuapp.com/mode?=endquiz";
+			let url = "https://fp460663.herokuapp.com?mode=endquiz";
 			fetch(url, fetchOptions)
 				.then(checkStatus)
 				.then(function(responseText) {
@@ -178,7 +178,7 @@
 	 * total questions that was created for this game
 	 */
 	function setRandomNumbersArray() {
-		while (randomNumbersArray.length < 2) { // sets # of ?s in the quiz
+		while (randomNumbersArray.length < 8) { // sets # of ?s in the quiz
 			let number = Math.floor(Math.random() * 20); // generate random number
 			if (!randomNumbersArray.includes(number)) {
 				randomNumbersArray.push(number);
