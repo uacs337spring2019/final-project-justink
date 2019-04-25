@@ -148,7 +148,6 @@ function getJsonListQuestions(lines) {
  */
 app.get('/', function (req, res) {
 	res.header("Access-Control-Allow-Origin", "*");
-	console.log("this is req.query.mode get");
 	console.log(req.query.mode);
 	if (req.query.mode == "getuser") {
 		let file = fs.readFileSync("usernames.txt", 'utf8');
@@ -157,7 +156,7 @@ app.get('/', function (req, res) {
 		let json = {"users" : jsonList};
 		res.send(JSON.stringify(json));
 	} else if(req.query.mode == "getquestion") {
-		console.log("in getquestion get");
+		console.log("In app.get: getquestion");
 		let file = fs.readFileSync("questions.txt", 'utf8');
 		let lines = file.split("\n");
 		let jsonList = getJsonListQuestions(lines);
