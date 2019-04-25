@@ -102,6 +102,7 @@
 	 */
 	function getQuestions() {
 		let url = "https://fp460663.herokuapp.com/?mode=getquestion";
+		console.log("in getQuestion in finalproject.js");
 		fetch(url)
 		.then(checkStatus)
 		.then(function(responseText) {
