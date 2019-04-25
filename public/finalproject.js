@@ -85,7 +85,7 @@
 		};
 		console.log(output);
 		
-		let url = "https://fp460663.herokuapp.com/?mode=getuser";
+		let url = "https://fp460663.herokuapp.com/?mode=adduser";
 		fetch(url, fetchOptions)
 			.then(checkStatus)
 			.then(function(responseText) {
