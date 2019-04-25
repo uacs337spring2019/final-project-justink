@@ -17,24 +17,47 @@ app.use(express.static('public'));
 /**
  * This adds a new user to the file of users and their highscore
  */
-app.post('/getuser', jsonParser, function(req, res) {
-	let name = req.body.username;
-	let score = req.body.score;
-	let output = name + ":::" + score + "\n";
-	
-	fs.appendFile("usernames.txt", output, function(err) {
-		if(err) {
-			console.log(err);
-			res.status(400);
-		}
-		console.log("The output was saved");
-		res.send("Success!");
-	});
+app.post('/', jsonParser, function(req, res) {
+	if (req.query.mode == "getuser") {
+		let name = req.body.username;
+		let score = req.body.score;
+		let output = name + ":::" + score + "\n";
+		
+		fs.appendFile("usernames.txt", output, function(err) {
+			if(err) {
+				console.log(err);
+				res.status(400);
+			}
+			console.log("The output was saved");
+			res.send("Success!");
+		});
+	} else if (req.query.mode == "endquiz") {
+		let name = req.body.username;
+		let score = req.body.score;
+		let newScore = req.body.newScore;
+		let original = name + ":::" + score;
+		let updated = name + ":::" + newScore;
+		console.log(original);
+		console.log(updated);
+		console.log("in endquiz");
+		fs.readFile("usernames.txt", 'utf8', function (err, data) {
+			if (err) {
+				console.log(err);
+				res.status(400);
+			}
+			let result = data.replace(original, updated);
+
+			fs.writeFile("usernames.txt", result, 'utf8', function (err) {
+				if (err) return console.log(err);
+			});
+		});
+	}
 })
 /**
  * This function is called only if the user scored higher than their previous
  * highscore. It then updates that user's highscore with their new one.
  */
+ /*
 app.post('/endquiz', jsonParser, function(req, res) {
 	let name = req.body.username;
 	let score = req.body.score;
@@ -55,7 +78,7 @@ app.post('/endquiz', jsonParser, function(req, res) {
 			if (err) return console.log(err);
 		});
 	});
-})
+})*/
 /**
  * This function makes a list of JSON objects of {"username": username, "score": score}
  */
@@ -122,24 +145,20 @@ function getJsonListQuestions(lines) {
  * This function opens up a file with a list of users and their highscores
  * then sends it to the requester
  */
-app.get('/getuser', function (req, res) {
+app.get('/', function (req, res) {
 	res.header("Access-Control-Allow-Origin", "*");
-	let file = fs.readFileSync("usernames.txt", 'utf8');
-	let lines = file.split("\n");
-	let jsonList = getJsonListUsers(lines);
-	let json = {"users" : jsonList};
-	res.send(JSON.stringify(json));
-})
-/**
- * This function opens up a file with a list of questions, their options, and their answers
- * then sends it to the requester
- */
-app.get('/getquestion', function (req, res) {
-	res.header("Access-Control-Allow-Origin", "*");
-	let file = fs.readFileSync("questions.txt", 'utf8');
-	let lines = file.split("\n");
-	let jsonList = getJsonListQuestions(lines);
-	let json = {"questions" : jsonList};
-	res.send(JSON.stringify(json));
+	if (req.query.mode == "getuser") {
+		let file = fs.readFileSync("usernames.txt", 'utf8');
+		let lines = file.split("\n");
+		let jsonList = getJsonListUsers(lines);
+		let json = {"users" : jsonList};
+		res.send(JSON.stringify(json));
+	} else if(req.query.mode == "getquestion") {
+		let file = fs.readFileSync("questions.txt", 'utf8');
+		let lines = file.split("\n");
+		let jsonList = getJsonListQuestions(lines);
+		let json = {"questions" : jsonList};
+		res.send(JSON.stringify(json));
+	}
 })
 app.listen(process.env.PORT);
