@@ -1,3 +1,9 @@
+/**
+ *Justin Kim
+ *CSC 337
+ * css file for finalproject.html
+ * sets all the appearance changes to the page
+ */
 #container, #quizDone {
 	width: 60%;
 	margin-left:auto;

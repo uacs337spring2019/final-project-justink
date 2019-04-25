@@ -51,7 +51,7 @@
 	 */
 	function checkUsername(name) {
 		let foundUser = false;
-		let url = "http://localhost:3000/getuser";
+		let url = "https://arcane-scrubland-15254.herokuapp.com/:process.env.PORT/getuser";
 		fetch(url)
 		.then(checkStatus)
 		.then(function(responseText) {
@@ -85,7 +85,7 @@
 		};
 		console.log(output);
 		
-		let url = "http://localhost:3000/getuser";
+		let url = "https://arcane-scrubland-15254.herokuapp.com/:process.env.PORT/getuser";
 		fetch(url, fetchOptions)
 			.then(checkStatus)
 			.then(function(responseText) {
@@ -101,7 +101,7 @@
 	 * creates a JSON object that contains all the questions
 	 */
 	function getQuestions() {
-		let url = "http://localhost:3000/getquestion";
+		let url = "https://arcane-scrubland-15254.herokuapp.com/:process.env.PORT/getquestion";
 		fetch(url)
 		.then(checkStatus)
 		.then(function(responseText) {
@@ -161,7 +161,7 @@
 			};
 			console.log(output);
 			
-			let url = "http://localhost:3000/endquiz";
+			let url = "https://arcane-scrubland-15254.herokuapp.com/:process.env.PORT/endquiz";
 			fetch(url, fetchOptions)
 				.then(checkStatus)
 				.then(function(responseText) {
