@@ -149,6 +149,7 @@ function getJsonListQuestions(lines) {
 app.get('/', function (req, res) {
 	res.header("Access-Control-Allow-Origin", "*");
 	console.log("in app .get");
+	console.log(res.query.mode);
 	if (req.query.mode == "getuser") {
 		let file = fs.readFileSync("usernames.txt", 'utf8');
 		let lines = file.split("\n");
