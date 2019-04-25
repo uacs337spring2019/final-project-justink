@@ -161,7 +161,9 @@ app.get('/', function (req, res) {
 		let file = fs.readFileSync("questions.txt", 'utf8');
 		let lines = file.split("\n");
 		let jsonList = getJsonListQuestions(lines);
+		console.log(jsonList);
 		let json = {"questions" : jsonList};
+		console.log(json);
 		res.send(JSON.stringify(json));
 	}
 })
